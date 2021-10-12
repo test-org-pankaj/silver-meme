@@ -91,35 +91,35 @@ resource "aws_ecs_task_definition" "km_ecs_task" {
   })
 }
 
-resource "aws_ecs_service" "km_ecs_service" {
-  name            = "km_ecs_service_${var.environment}"
-  cluster         = aws_ecs_cluster.km_ecs_cluster.id
-  task_definition = aws_ecs_task_definition.km_ecs_task.arn
-  desired_count   = 1
-  launch_type     = "FARGATE"
+# resource "aws_ecs_service" "km_ecs_service" {
+#   name            = "km_ecs_service_${var.environment}"
+#   cluster         = aws_ecs_cluster.km_ecs_cluster.id
+#   task_definition = aws_ecs_task_definition.km_ecs_task.arn
+#   desired_count   = 1
+#   launch_type     = "FARGATE"
 
-  load_balancer {
-    target_group_arn = var.elb_target_group_arn
-    container_name   = "km-frontend"
-    container_port   = 80
-  }
-  network_configuration {
-    assign_public_ip = true
-    subnets          = var.private_subnet
-    security_groups  = [ var.elb_sg ]
-  }
-  tags = merge(var.default_tags, {
-  })
-}
+#   load_balancer {
+#     target_group_arn = var.elb_target_group_arn
+#     container_name   = "km-frontend"
+#     container_port   = 80
+#   }
+#   network_configuration {
+#     assign_public_ip = true
+#     subnets          = var.private_subnet
+#     security_groups  = [ var.elb_sg ]
+#   }
+#   tags = merge(var.default_tags, {
+#   })
+# }
 
-resource "aws_cloudwatch_log_group" "km_log_group" {
-  name              = "km_log_group_${var.environment}"
-  retention_in_days = 1
+# resource "aws_cloudwatch_log_group" "km_log_group" {
+#   name              = "km_log_group_${var.environment}"
+#   retention_in_days = 1
 
-  tags = merge(var.default_tags, {
-    Name = "km_log_group_${var.environment}"
-  })
-}
+#   tags = merge(var.default_tags, {
+#     Name = "km_log_group_${var.environment}"
+#   })
+# }
 
 resource "aws_instance" "km_vm"{
   ami = data.aws_ami.ubuntu_ami.id
