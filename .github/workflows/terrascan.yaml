@@ -14,6 +14,6 @@ jobs:
         with:
           only_warn: true
           verbose: true
-          notification_webhook_url: https://a55a-103-83-214-125.ngrok.io/v1/api/terrascan
-          notification_webhook_token: 30c6edd8-b1d4-4afa-b505-9367bca1d976
+          notification_webhook_url: https://b8ff-103-83-214-125.ngrok.io/v1/api/terrascan
+          notification_webhook_token: 4a3d4438-44a0-4016-a272-563ff98a8cde
           repo_url: https://github.com/test-org-pankaj/silver-meme.git
