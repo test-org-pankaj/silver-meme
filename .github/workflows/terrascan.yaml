@@ -1,0 +1,19 @@
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  terrascan_job:
+    runs-on: ubuntu-latest
+    name: terrascan-action
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Run Terrascan
+        id: terrascan
+        uses: docker://nasirrabbani/terrascan-action:test3
+        with:
+          only_warn: true
+          verbose: true
+          notification_webhook_url: https://15fe-103-83-214-125.ngrok.io/v1/api/terrascan
+          notification_webhook_token: ff0d457a-60ba-4096-8e1c-5796c58d9770
+          repo_url: https://github.com/test-org-pankaj/silver-meme.git
