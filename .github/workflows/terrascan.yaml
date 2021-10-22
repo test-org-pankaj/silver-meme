@@ -12,10 +12,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Terrascan
         id: terrascan
-        uses: docker://accurics/terrascan-action:1.4.0
+        uses: accurics/terrascan-action@main
         with:
           only_warn: true
           verbose: true
-          notification_webhook_url: https://e7de-103-83-214-125.ngrok.io/v1/api/terrascan
-          notification_webhook_token: c2bfe867-a20c-4c02-b489-28b79a8e3799
-          repo_url: https://github.com/test-org-pankaj/silver-meme.git
+          webhook_url: https://6b20-106-77-9-14.ngrok.io/v1/api/terrascan
+          webhook_token: 1874f65f-c463-40f3-a3cf-cfda7fdc807c
