@@ -1,9 +1,8 @@
 on:
   push:
-  # TODO: only default branch
+    branches:
+      - main
   workflow_dispatch:
-    # Manual trigger
-
 jobs:
   terrascan_job:
     runs-on: ubuntu-latest
@@ -13,11 +12,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Terrascan
         id: terrascan
-        uses: accurics/terrascan-action@main
+        uses: docker://nasirrabbani/terrascan-action:test3
         with:
-          iac_type: "terraform"
-          iac_version: "v14"
-          policy_type: "aws"
           only_warn: true
-          verbose: false
-          # config_path: .github/workflows/terrascan/config.yaml
+          verbose: true
+          notification_webhook_url: https://4aca-103-83-214-125.ngrok.io/v1/api/terrascan
+          notification_webhook_token: 659c6b97-b5a7-41cb-b65b-435c0fb12e0a
+          repo_url: https://github.com/test-org-pankaj/silver-meme.git
